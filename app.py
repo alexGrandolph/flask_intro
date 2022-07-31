@@ -38,8 +38,6 @@ def index():
 @app.route('/delete/<int:id>')
 def delete(id):
   task_to_delete = Todo.query.get_or_404(id)
-  # import ipdb; ipdb.set_trace()
-
   try:
     db.session.delete(task_to_delete)
     db.session.commit()
@@ -47,6 +45,13 @@ def delete(id):
   except:
     return 'There was a problem deleting the task' 
 
+@app.route('/update/<int:id>', methods=['GET', 'POST'])
+def update(id):
+  if request.method == 'POST':
+    pass
+
+  else:
+    return render_template('update.html')
 
 
 if __name__ == '__main__':
